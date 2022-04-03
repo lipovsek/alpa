@@ -173,7 +173,6 @@ def run_auto_sharding_pass(
     else:
         multiple_stages = False
 
-    backend = xb.get_backend("gpu")
     num_devices = logical_mesh.num_devices
     build_random_seed = global_config.build_random_seed
     compile_options = get_compile_options(
@@ -328,7 +327,6 @@ def run_spmd_partitioner_pass(
       rewrite_for_grad_acc: Whether to do rewriting for gradient accumulation.
       rewrite_grad_acc_indices: The indices of tensors in output that are gradients.
     """
-    backend = xb.get_backend("gpu")
     compile_options = get_compile_options(
         num_replicas=1,
         num_partitions=num_devices,
