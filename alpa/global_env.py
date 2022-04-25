@@ -146,7 +146,6 @@ global_config = GlobalConfig()
 
 
 def set_parallelize_options(
-        backend="gpu",
         devices=None,
         strategy: str = "shard_parallel",
         memory_budget_per_device: Optional[float] = None,
@@ -166,7 +165,8 @@ def set_parallelize_options(
         auto_stage_construction_imbalance_tolerance: float = np.inf,
         pipeline_parallel_schedule: str = "1f1b",
         use_hlo_cost_model: bool = False,
-        profiling_database_filename: Optional[str] = None):
+        profiling_database_filename: Optional[str] = None,
+        backend="gpu"):
     """
     Set the global options for all @parallelize decorator.
 
