@@ -1,3 +1,12 @@
+from . import global_env
+
+from alpa.global_env import global_config
+try:
+    import cupy
+    global_config.has_cuda = True
+except ImportError:
+    global_config.has_cuda = False
+
 from . import api
 from . import collective
 from . import device_mesh

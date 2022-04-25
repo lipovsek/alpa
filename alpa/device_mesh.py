@@ -10,8 +10,6 @@ import os
 import time
 from typing import Any, List, Union, Sequence, Tuple, Optional
 
-import cupy
-from cupy.cuda import nccl
 import jax
 from jax import core, jit, xla, device_put
 from jax._src.api import ShapeDtypeStruct
@@ -42,6 +40,10 @@ from alpa.util import (benchmark_func, get_microbatch_sharding_spec,
                        jax_tensor_to_xla_buffer, xla_buffer_to_cupy,
                        cupy_to_xla_buffer, is_continuous_subset,
                        infer_offset_and_n_elements, jax_tensor_index)
+
+if global_config.has_cuda:
+    import cupy
+    from cupy.cuda import nccl
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

@@ -12,7 +12,6 @@ from typing import Sequence, Any
 from warnings import warn
 from functools import partialmethod
 
-import cupy as cp
 import flax
 from flax.training import train_state
 import jax
@@ -34,6 +33,9 @@ import ray
 import tqdm
 
 from alpa.global_env import global_config, is_worker
+
+if global_config.has_cuda:
+    import cupy as cp
 
 ########################################
 ##### Alpa API Utilities

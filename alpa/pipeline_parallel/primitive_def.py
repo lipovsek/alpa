@@ -7,14 +7,16 @@ from jax.lib import xla_client as xc
 from jax.tree_util import tree_flatten, tree_unflatten
 
 from alpa.global_env import global_config
-from alpa.pipeline_parallel.xla_custom_call_marker import pipeline_marker, identity
 
-xc.register_custom_call_target(b'pipeline_marker',
-                               pipeline_marker(),
-                               platform=global_config.backend)
-xc.register_custom_call_target(b'identity',
-                               identity(),
-                               platform=global_config.backend)
+if global_config.has_cuda:
+    from alpa.pipeline_parallel.xla_custom_call_marker import pipeline_marker, identity
+
+    xc.register_custom_call_target(b'pipeline_marker',
+                                   pipeline_marker(),
+                                   platform=global_config.backend)
+    xc.register_custom_call_target(b'identity',
+                                   identity(),
+                                   platform=global_config.backend)
 
 ########## Public APIs ##########
 

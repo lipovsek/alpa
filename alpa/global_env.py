@@ -56,6 +56,7 @@ class GlobalConfig:
         ########## Options of both shard_parallel and pipeline_parallel ##########
         self.backend = "gpu"
         self.devices = None
+        self.has_cuda = False
         self.strategy = "shard_parallel"
         self.memory_budget_per_device = None
         self.num_micro_batches = None  # If is not None, gradient accumulation will
